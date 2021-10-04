@@ -1,0 +1,23 @@
+#!/bin/bash
+echo "$(tput setaf 3)$(tput bold)===============================Running Main.sh=================================$(tput sgr0)"
+
+ls -lah
+echo "$(tput setaf 3)$(tput bold)****************Ensure scripts 1 - 4 are listed********************$(tput sgr0)"
+read -n 1 -s -r -p "$(tput setaf 3)$(tput bold)Press any key to continue or ctrl+c to cancel.$(tput sgr0)"
+
+echo " =====================Making bash scripts in directory executable======================"
+sudo chmod +x *.sh
+echo "=====================done======================"
+
+sleep 5
+
+src = SCRIPT_PATH="./1-update_software_directories.sh"
+if [ ! -f $src ]
+then
+       echo "File does not exist!"
+else
+      echo "=====================Running $src======================="
+      
+     "$src"
+
+fi
