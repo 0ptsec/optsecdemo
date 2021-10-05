@@ -1,0 +1,17 @@
+
+This will require that the sensor device is mostly assembled and able to turned on, booted into the raspberrian OS, has internet access, and can adequatly recognize the attached SSD drive. If the drive or any of the other above requirements are not met, then the below and remainder of all following processes will not work.
+
+sudo apt update
+sudo apt full-upgrade
+sudo rpi-update
+
+sudo rpi-eeprom-update -d -a
+
+sudo raspi-config
+	Select Advanced Options -> boot loader version -> Select Latest -> select OK -> select NO to Reset boot ROM to defaults?
+	Select Advanced Option -> Boot Order -> select USB Boot -> select OK -> select Finish -> select No to the reboot request.
+
+launch SD Card Copier from the accessories window once logged into the raspberrian GUI.
+	Select the SSD HD from the drop down list.
+
+Once complete, shutdown the pi device, remove the SD card and restart, the device should now boot from the SSD HD
