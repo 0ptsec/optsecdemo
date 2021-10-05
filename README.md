@@ -1,7 +1,7 @@
 # optsecdemo
 scripts associated with the sensor webinar
 
-You can download the github directory directly onto the raspberry pi or to another location and do what you would like.
+You can download the github directory directly onto the raspberry pi or to another location and copy or paste commands as you go.
 
 The following scripts will need to be modified with the relevant path, ports, and account information nessesary to operate in your environment.
 Each script is also documented with further information as to what is needed to fuction:
