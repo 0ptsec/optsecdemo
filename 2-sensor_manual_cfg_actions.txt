@@ -1,0 +1,52 @@
+
+#Please merge in the folling lines to /etc/network/interfaces
+
+#add the below to the interface file.
+
+auto eth0
+iface eth0 inet manual
+	up ifconfig eth0 0.0.0.0 up
+	up ip link set eth0 promisc on
+	down ip link set eth0 promisc off
+	down ip link set eth0 down
+
+#add the following to /etc/dhcpcd.conf
+denyinterfaces eth0
+
+or run
+sudo echo 'denyinterfaces eth0' | sudo tee -a /etc/dhcpcd.conf >/dev/null
+
+#turn off ipv6 for eth0
+sudo echo 'net.ipv6.conf.all.forwarding=0' | sudo tee -a /etc/sysctl.conf >/dev/null
+sudo echo 'net.ipv6.conf.eth0.disable_ipv6=1' | sudo tee -a /etc/sysctl.conf >/dev/null
+
+#turn off wifi, requires reboot.
+rfkill block wifi
+
+
+
+#Copy gen-node-cfg.sh and node.cfg-template to /usr/local/bin folder, or create the files on your local device, copy the contents and save to the /usr/local/bin folder.
+sudo nano /usr/local/bin/gen-node-cfg.sh # copy the contents from the save file.
+sudo chmod +x /usr/local/bin/gen-node-cfg.sh
+sudo nano /usr/local/bin/node.cfg-template # copy the contents from the save file.
+
+
+#Add the following items to the rc.local file. These items setup tcp dump to output a compressed file every hr, sets the nice level to 15, turns off unnessesary bulk from the capture and ensures bro deploy is run post reboot.
+
+#Open rc.local file
+sudo nano /etc/rc.local
+
+#Please add the following lines to /etc/rc.local _above_ the final "exit 0" line
+
+rm -f /tmp/internet_live /var/toshow/[0-9][0-9]*.txt}
+
+#ethtool command to reduce processing at eth0
+ethtool -K eth0 gro off lro off rx off tx off gso off
+
+mkdir -p /opt/bro/pcaps
+screen -S capture -t capture -d -m bash -c "nice -n 15 tcpdump -i eth0 -G 3600 -w '/opt/bro/pcaps/'`hostname -s`'.%Y%m%d%H%M%S.pcap' -z bzip2 '((tcp[13] & 0x17 != 0x10) or not tcp) and (port 53 or not ((src net 10.0.0.0/8 or src net 172.16.0.0/12 or src net 192.168.0.0/16 or src net 169.254.0.0/16) and (dst net 10.0.0.0/8 or dst net 172.16.0.0/12 or dst net 192.168.0.0/16 or dst net 169.254.0.0/16)) )'"
+
+/usr/bin/broctl deploy
+
+
+
