@@ -1,0 +1,25 @@
+#####################################################ITEMS BELOW THIS LINE ARE TO BE CONFIGURED LAST#############################################################
+#Install and run Passer.
+#Download passer
+git clone https://github.com/activecm/passer.git
+#Then cd into the passer directory for the following
+#Install passer dependancies and requirements.txt and the run the following from the passer directory.
+sudo apt-get install arp-scan ettercap-text-only nmap wireshark 
+sudo pip install -r requirements.txt
+#Prevent Scapy from performing DNS lookups
+echo 'noenum = [ Resolve(), TCP_SERVICES, UDP_SERVICES ]' >> ~/.scapy_startup.py
+#Install p0f
+sudo apt install p0f
+
+
+#Install and configure Tripwire, you will be asked to configure a passphrase twice, all pasphrases are generated and saved in the corresponding device auth.txt file.
+sudo apt-get install tripwire
+sudo tripwire --init
+sudo sh -c "tripwire --check | grep Filename > missing-dir.txt"
+cat missing-dir.txt – review and comment out any relevant directories not found in twpol.txt.
+sudo nano /etc/tripwire/twpol.txt
+sudo twadmin -m P /etc/tripwire/twpol.txt
+sudo tripwire --init
+sudo tripwire --check – run a check before the device leaves, when the dive is first plugged in, and before the device is sent back.
+#Post check to reset database and accept violations do the following:
+	Sudo tripwire –update –twrfile /var/lib/tripwire/report/<name of sensor-time-date>.twd – The twd report will have all of the violation listed. Review for the md5 hash changes.
