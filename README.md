@@ -18,4 +18,5 @@ Follow the numbered order and work your way through the process.
 ***NOTE:*** 
 
 ***Durring step 3, make sure to start with "main.sh" this will kick off the other scripts so the install and setup are perfromed in an appropriate order.***
-***to make bash scripts executable, please make sure to " sudo chown +x" any ".sh" files OR run the script with "sudo bash" in front of the script.(ex.."sudo bash main.sh")***
+
+***To make bash scripts executable, make sure to " sudo chown +x" any ".sh" files OR run the script with "sudo bash" in front of the script.(ex.."sudo bash main.sh")***
