@@ -11,7 +11,7 @@ Each script is also documented with further information as to what is needed to 
 - autossh_connect.sh
 
 
-The first step would be to follow the numbered order and work your way through each txt file. All commands have been documented and can be cut and pasted directly into an SSH session to the raspberry pi. 
+The first step would be to follow the numbered order and work your way through each step. All commands have been documented and can be cut and pasted directly into an SSH session to the raspberry pi. 
 - 1-sensor_boot_from_SSD.txt
 - 2-sensor_manual_cfg_actions.txt
 - ***3-run scripts from withing the "main_scripts" folder***
