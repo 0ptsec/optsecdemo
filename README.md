@@ -20,7 +20,7 @@ The first step would be to follow the numbered order and work your way through e
 
 ***NOTE:*** 
 
-***Durring step 3, make sure to start with "main.sh" this will kick off the other scripts so the install and setup are perfromed in an appropriate order.***
+***Durring step 3, make sure to start with "main.sh" this will kick off the other scripts so the install and setup are performed in an appropriate order.***
 
 ***To make bash scripts executable, make sure to " sudo chown +x" any ".sh" files OR run the script with "sudo bash" in front of the script.(ex.."sudo bash main.sh")***
 ***FYI-you may need to supply the absolute path to the scripts while using "sudo"***
