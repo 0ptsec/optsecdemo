@@ -1,7 +1,7 @@
 # optsecdemo
 scripts associated with the sensor webinar
 
-Please Modify the following scripts and add the relevant path, ports, and account information nessesary to operate in your environment.
+The following scripts will need to be modified with the relevant path, ports, and account information nessesary to operate in your environment.
 Each script is also documented with further information as to what is needed to fuction as well:
 - iamhere.sh
 - system_info_report.sh
