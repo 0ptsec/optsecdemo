@@ -1,0 +1,78 @@
+#Install additional security and management software
+sudo apt-get install autossh ufw libpam-google-authenticator
+
+#add new local user to device
+sudo adduser <username>
+password: use the password set in auth doc for device
+
+#Make sure the new user is part of all nessesary groups
+sudo usermod -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,spi,i2c,gpio <username>
+
+#Change Hostname of device
+uname -a
+whoami
+sudo nano /etc/hosts – change the 127.0.1.1 entry
+sudo nano /etc/hostname – change to the selected name
+sudo reboot
+
+#configure UFW firewall
+sudo ufw allow in on eth1 to any port 22
+sudo ufw allow in on eth1 to any port ssh
+sudo ufw allow in on eth1 ssh/tcp
+sudo ufw limit ssh/tcp
+sudo ufw enable
+
+#set timezone to UTC
+sudo timedatectl set-timezone UTC
+
+#change password for pi user and lock pi account
+su <username>
+sudo passwd pi
+#exit and log in as pi user to ensure password works
+#exit and log in as <username> user and lock the pi account
+sudo passwd --lock pi
+#remove pi user from being able to ssh to the device.
+sudo nano /etc/ssh/sshd_config
+AllowUsers <username>
+DenyUsers pi
+
+#Force sudo to use password
+sudo visudo /etc/sudoers.d/010_pi-nopasswd -> set the entry to “pi ALL=(ALL) PASSWD: ALL” and “<username> ALL=(ALL) PASSWD: ALL”
+
+#generate a key for the sensormon server
+sudo ssh-keygen
+sudo cp /root/.ssh/id_rsa .ssh/
+sudo cp /root/.ssh/id_rsa.pub .ssh/
+sudo chown <username> .ssh/id_rsa
+sudo chown <username> .ssh/id_rsa.pub
+
+#Cron Jobs - make sure to run sudo to create tasks under the root profile
+sudo crontab -e - enter a new job in the current profile
+sudo crontab -l - list the current tasks
+@reboot sleep 5 && /bin/autossh-connect.sh > /dev/null 2>&1
+@reboot sleep 30 && /bin/system_info_send.sh 2>&1
+#*/5 * * * * /bin/autossh-connect.sh > /dev/null 2>&1
+#*/10 * * * * /bin/imhere.sh 2>&1
+0 0 * * * /bin/system_info_send.sh 2>&1
+
+
+#Multifactor with google authenticator
+sudo nano /etc/ssh/sshd_config
+ChallengeResponseAuthentication = yes – change this to yes
+google-authenticator - “DO NOT LAUNCH FROM SUDO” – scan the barcode in google authenticator “you may need to resize your image”, copy your emergency codes, and answer Y to the question.
+Sudo nano /etc/pam.d/sshd
+Create and entry under “@include common-auth”
+#2FA
+“auth required pam_google_authenticator.so”
+Sudo systemctl restart ssh – try logging in, you should get authenticated and then asked for your google code.
+Raspberry pi doc - https://www.raspberrypi.org/blog/setting-up-two-factor-authentication-on-your-raspberry-pi/
+
+
+
+
+
+
+
+
+
+
