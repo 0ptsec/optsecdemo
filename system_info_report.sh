@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Modify the below "out_file_path" variable to a location relevant to your system
+#keep in mind, this report will be picked up by report_send script, so the paths should match.
+
 out_file_path=/home/<user name>/sysinfo.out
 
 echo -e "**************************************************************************************************" >> $out_file_path
