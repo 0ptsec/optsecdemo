@@ -15,5 +15,5 @@ Follow the numbered order and work your way through the process.
 - 4-sensor_env_cfg.txt
 - 5-sensor_last_items.txt
 
-**NOTE** 
-
+***NOTE*** 
+***Durring step 3, make sure to start with "main.sh" this will kick off the other scripts so the install and setup are perfromed in an appropriate order.*** 
