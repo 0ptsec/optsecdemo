@@ -1,14 +1,17 @@
 # optsecdemo
 scripts associated with the sensor webinar
 
+You can download the github directory directly onto the raspberry pi or to another location and do what you would like.
+
 The following scripts will need to be modified with the relevant path, ports, and account information nessesary to operate in your environment.
-Each script is also documented with further information as to what is needed to fuction as well:
+Each script is also documented with further information as to what is needed to fuction:
 - iamhere.sh
 - system_info_report.sh
 - system_info_send.sh
 - autossh_connect.sh
 
-Follow the numbered order and work your way through the process. 
+
+The next step would be to follow the numbered order and work your way through each txt file. All commands have been documented and can be cut and pasted directly into an SSH session to the raspberry pi. 
 - 1-sensor_boot_from_SSD.txt
 - 2-sensor_manual_cfg_actions.txt
 - ***3-run scripts from withing the "main_scripts" folder***
