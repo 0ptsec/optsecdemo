@@ -16,9 +16,7 @@ sudo nano /etc/hostname – change to the selected name
 sudo reboot
 
 #configure UFW firewall
-sudo ufw allow in on eth1 to any port 22
 sudo ufw allow in on eth1 to any port ssh
-sudo ufw allow in on eth1 ssh/tcp
 sudo ufw limit ssh/tcp
 sudo ufw enable
 
