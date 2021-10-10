@@ -15,7 +15,7 @@ sudo apt install p0f
 #Install and configure Tripwire, you will be asked to configure a passphrase twice, all pasphrases are generated and saved in the corresponding device auth.txt file.
 sudo apt-get install tripwire
 sudo tripwire --init
-sudo sh -c "tripwire --check | grep Filename > missing-dir.txt"
+sudo sh -c "tripwire --check | grep -i filename | tee nodir.txt"
 cat missing-dir.txt – review and comment out any relevant directories not found in twpol.txt.
 sudo nano /etc/tripwire/twpol.txt
 sudo twadmin -m P /etc/tripwire/twpol.txt
