@@ -10,7 +10,8 @@ sudo pip install -r requirements.txt
 echo 'noenum = [ Resolve(), TCP_SERVICES, UDP_SERVICES ]' >> ~/.scapy_startup.py
 #Install p0f
 sudo apt install p0f
-
+#Then run the following to run passer in a background process with a niceness of 10 with timestamps.
+sudo nice -n 10 ./passer.py -i eth0 -l /opt/bro/passerlogs/passercap.txt --timestamp & #make sure to document the process id so you can kill it if nessesary.
 
 #Install and configure Tripwire, you will be asked to configure a passphrase twice, all pasphrases are generated and saved in the corresponding device auth.txt file.
 sudo apt-get install tripwire
