@@ -63,11 +63,12 @@ sudo crontab -l - list the current tasks
 #Multifactor with google authenticator
 sudo nano /etc/ssh/sshd_config
 ChallengeResponseAuthentication = yes – change this to yes
+Sudo systemctl restart ssh - try logging in to make sure all still works.
 google-authenticator - “DO NOT LAUNCH FROM SUDO” – scan the barcode in google authenticator “you may need to resize your image”, copy your emergency codes, and answer Y to the question.
 Sudo nano /etc/pam.d/sshd
 Create and entry under “@include common-auth”
 #2FA
-“auth required pam_google_authenticator.so”
+“auth required pam_google_authenticator.so” - without the quotes
 Sudo systemctl restart ssh – try logging in, you should get authenticated and then asked for your google code.
 Raspberry pi doc - https://www.raspberrypi.org/blog/setting-up-two-factor-authentication-on-your-raspberry-pi/
 
