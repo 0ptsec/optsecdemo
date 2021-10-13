@@ -37,7 +37,7 @@ DenyUsers pi
 #Force sudo to use password
 sudo visudo
   add entries user the following line 'Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"':
-  Defaults        timestamp_timeout=1
+  Defaults        timestamp_timeout=1       # Change to what time you want, the default is 15 minutes.
   Defaults        logfile=/var/log/sudo
   
 sudo visudo /etc/sudoers.d/010_pi-nopasswd -> set the entry to “pi ALL=(ALL) PASSWD: ALL” 
