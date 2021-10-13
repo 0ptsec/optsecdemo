@@ -3,7 +3,7 @@ sudo apt-get install autossh ufw libpam-google-authenticator
 
 #add new local user to device
 sudo adduser <username>
-password: use the password set in auth doc for device
+password: use the password generated and stored in your pasword manager.
 
 #Make sure the new user is part of all necessary groups
 sudo usermod -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,spi,i2c,gpio <username>
