@@ -50,16 +50,6 @@ sudo cp /root/.ssh/id_rsa.pub .ssh/
 sudo chown <username> .ssh/id_rsa
 sudo chown <username> .ssh/id_rsa.pub
 
-#Cron Jobs - make sure to run sudo to create tasks under the root profile
-sudo crontab -e - enter a new job in the current profile
-sudo crontab -l - list the current tasks
-@reboot sleep 5 && /bin/autossh-connect.sh > /dev/null 2>&1
-@reboot sleep 30 && /bin/system_info_send.sh 2>&1
-#*/5 * * * * /bin/autossh-connect.sh > /dev/null 2>&1
-#*/10 * * * * /bin/imhere.sh 2>&1
-0 0 * * * /bin/system_info_send.sh 2>&1
-
-
 #Multifactor with google authenticator
 sudo nano /etc/ssh/sshd_config
 ChallengeResponseAuthentication = yes – change this to yes
@@ -71,6 +61,19 @@ Create and entry under “@include common-auth”
 “auth required pam_google_authenticator.so” - without the quotes
 Sudo systemctl restart ssh – try logging in, you should get authenticated and then asked for your google code.
 Raspberry pi doc - https://www.raspberrypi.org/blog/setting-up-two-factor-authentication-on-your-raspberry-pi/
+
+
+#Cron Jobs - make sure to run sudo to create tasks under the root profile
+sudo crontab -e - enter a new job in the current profile
+sudo crontab -l - list the current tasks
+@reboot sleep 5 && /bin/autossh-connect.sh > /dev/null 2>&1
+@reboot sleep 30 && /bin/system_info_send.sh 2>&1
+#*/5 * * * * /bin/autossh-connect.sh > /dev/null 2>&1
+#*/10 * * * * /bin/imhere.sh 2>&1
+0 0 * * * /bin/system_info_send.sh 2>&1
+
+
+
 
 
 
