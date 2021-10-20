@@ -5,5 +5,5 @@
 #Make sure to have generated appropriate rsa keys and setup both monitoring server and sensor to be able to communicate via ssh keys.
 
 
-#create ssh reverse tunnel to be able to access the sensor from the remote monitoring server.
+#create ssh reverse tunnel in order to access the sensor from the remote monitoring server.
 autossh -M 25051 -N -f -o "PubkeyAuthentication=yes" -o "PasswordAuthentication=no" -i ~/.ssh/id_rsa -R 5051:localhost:22 <username>@<dns name>.<domain name> &
