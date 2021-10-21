@@ -73,9 +73,19 @@ sudo crontab -l - list the current tasks
 0 0 * * * /bin/system_info_send.sh 2>&1
 
 
+# measure temperature of your device.
+sudo nano ~/.bashrc
+# add the following to your .bashrc 
 
+alias temp="_tempf"
 
+_tempf() {
+/opt/vc/bin/vcgencmd measure_temp | awk -F [=\'] '{print"temp="$2" C "($2 * 1.8)+32" F"}'
+}
 
+# save and close the file, then run the following to reload your .bashrc file
+. ~/.bashrc
+# use the temp command now to check core temperature. Can be added to your report
 
 
 
