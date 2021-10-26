@@ -23,4 +23,4 @@ sudo twadmin -m P /etc/tripwire/twpol.txt
 sudo tripwire --init
 sudo tripwire --check – run a check before the device leaves, when the dive is first plugged in, and before the device is sent back.
 #Post check to reset database and accept violations do the following:
-	Sudo tripwire –update –twrfile /var/lib/tripwire/report/<name of sensor-time-date>.twd – The twd report will have all of the violation listed. Review for the md5 hash changes.
+	Sudo tripwire –-update –-twrfile /var/lib/tripwire/report/<name of sensor-time-date>.twd – The twd report will have all of the violation listed. Review for the md5 hash changes.
