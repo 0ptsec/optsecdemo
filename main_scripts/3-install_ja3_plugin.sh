@@ -20,10 +20,9 @@ fi
 
 echo -e "$(tput setaf 3)$(tput bold)=====================done======================$(tput sgr0)\n"
 read -n 1 -s -r -p "$(tput setaf 3)$(tput bold)Press any key to continue to script 4 or ctrl+c to cancel.$(tput sgr0)"
-echo "\n"
+echo -e "\n"
 SCRIPT_PATH="$(pwd)/4-turn_off_GUI.sh"
-if [ ! -f $SCRIPT_PATH
- ]
+if [ ! -f $SCRIPT_PATH ]
 then
        echo "File does not exist!"
 else
