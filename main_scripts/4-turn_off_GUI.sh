@@ -13,3 +13,4 @@ echo -e "\n"
 sudo raspi-config
 
 echo "$(tput setaf 3)$(tput bold)===================== All Done======================$(tput sgr0)"
+
