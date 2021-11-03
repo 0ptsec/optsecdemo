@@ -8,8 +8,6 @@ sudo apt-get install arp-scan ettercap-text-only nmap wireshark
 sudo pip install -r requirements.txt
 #Prevent Scapy from performing DNS lookups
 echo 'noenum = [ Resolve(), TCP_SERVICES, UDP_SERVICES ]' >> ~/.scapy_startup.py
-#Install p0f
-sudo apt install p0f
 #Then run the following to run passer in a background process with a niceness of 10 with timestamps.
 sudo nice -n 10 ./passer.py -i eth0 -l /opt/bro/passerlogs/passercap.txt --timestamp & #make sure to document the process id so you can kill it if nessesary.
 
